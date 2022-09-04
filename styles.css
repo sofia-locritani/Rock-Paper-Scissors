@@ -1,0 +1,15 @@
+button {
+    margin-top: 200px;
+}
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+}

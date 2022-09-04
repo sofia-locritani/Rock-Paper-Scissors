@@ -6,37 +6,48 @@ function getComputerChoice() {
     return pick[Math.floor(Math.random() * pick.length)];
 }
 
-function playRound (playerSelection) {
+function playRound () {
     computerSelection = getComputerChoice()
     let picks = ['rock', 'paper', 'scissors'];
+    const results = document.createElement('div');
+    const result = document.querySelector('.result');
+    const winner = document.querySelector('p');
+    results.classList.add('results');
 
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'paper' && computerSelection == 'rock') ||
         (playerSelection == 'scissors' && computerSelection == 'paper')) {
         playerScore++;
-        alert ('You win!')
-        console.log(`You win the round! Your score: ${playerScore} - Computer score: ${computerScore}`)
+         results.textContent = `You win the round. Your score: ${playerScore} - Computer score: ${computerScore}`;
+         result.appendChild(results);
         }
     else if (playerSelection == computerSelection) {
-        alert ("It's a draw!")
-        console.log (`The round is a draw! Your score: ${playerScore} - Computer score: ${computerScore}`)
+        results.textContent = `The round is a draw! Your score: ${playerScore} - Computer score: ${computerScore}`;
+        result.appendChild(results);
     }
     else {
        computerScore++;
-       alert ("You lose!")
-       console.log(`Computer wins the round! Your score: ${playerScore} - Computer score: ${computerScore}`)
+       results.textContent = `Computer wins the round. Your score: ${playerScore} - Computer score: ${computerScore}`;
+       result.appendChild(results);
     }
 }
 
-function game() {
-    for (let gameRound = 0; gameRound < 5; gameRound++) {
-        playRound(prompt("Pick your choice: "))
-    }
-    if (playerScore > computerScore) {
-        console.log ("You won the game!")
-    } else if (computerScore > playerScore) {
-        console.log ("Computer won the game!")
-    } else {
-        console.log ("The game ended in a draw.")
-    }
-}
+
+
+const btn1 = document.querySelector('#btn1');
+btn1.addEventListener('click', () => {
+    playerSelection = 'rock';
+    playRound();
+  });
+
+const btn2 = document.querySelector('#btn2');
+btn2.addEventListener('click', () => {
+    playerSelection = 'paper';
+    playRound();
+});
+
+const btn3 = document.querySelector('#btn3');
+btn3.addEventListener('click', () => {
+    playerSelection = 'scissors';
+    playRound();
+});
